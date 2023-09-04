@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
@@ -9,33 +7,23 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(cors());  
+app.use(cors());
 
 const db = mysql.createConnection({
-    host: process.env.DB_HOST, 
-    user: process.env.DB_USERNAME, 
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DBNAME,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+	host: "containers-us-west-65.railway.app",
+	user: "root",
+	password: 'HEGnUbTZU0oZAYI35pBk',
+	database: "railway",
 });
 
-app.get('/api/getmenu',(req,res)=>{
-    const sql = "select * from users";
+app.get('/getexample',(req,res)=>{
+    const sql = "select * from menu";
     db.query(sql,(err,result)=>{
         return res.json(result)
     })
 })
 
-
-app.get('/api/getmsg',(req,res)=>{
-    db.query((err,result)=>{
-        return res.json("Hey I'm alive")
-    })
-})
-
-const PORT = process.env.PORT || 5533
+const port = 6828;
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
