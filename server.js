@@ -10,21 +10,34 @@ app.use(express.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-	host: "containers-us-west-65.railway.app",
-	user: "root",
-	password: 'HEGnUbTZU0oZAYI35pBk',
-	database: "railway",
+  host: process.env.DB_HOST,       // Replace with your database hostname
+  user: process.env.DB_USER,       // Replace with your database username
+  password: process.env.DB_PASS,   // Replace with your database password
+  database: process.env.DB_NAME,   // Replace with your database name
 });
 
-app.get('/getexample',(req,res)=>{
-    const sql = "select * from menu";
-    db.query(sql,(err,result)=>{
-        return res.json(result)
-    })
-})
+// Check the database connection
+db.connect((err) => {
+  if (err) {
+    console.error("Database connection error:", err.message);
+  } else {
+    console.log("Connected to the database");
+  }
+});
 
-const port = 6828;
+app.get('/getexample', (req, res) => {
+  const sql = "SELECT * FROM menu";
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error("Database query error:", err.message);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+    return res.json(result);
+  });
+});
+
+const port = process.env.PORT || 6828; // Use the PORT environment variable if available
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
-})
+});
