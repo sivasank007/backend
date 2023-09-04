@@ -11,23 +11,23 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());  
 
-const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
-
-const db = mysql.createConnection(urlDB);
+const db = mysql.createConnection({
+    host: process.env.DB_HOST, 
+    user: process.env.DB_USERNAME, 
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DBNAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
 
 app.get('/api/getmenu',(req,res)=>{
-    const sql = "select * from menu";
+    const sql = "select * from users";
     db.query(sql,(err,result)=>{
         return res.json(result)
     })
 })
 
-app.get('/api/getmenuitems',(req,res)=>{
-    const sql = "select * from menuitems";
-    db.query(sql,(err,result)=>{
-        return res.json(result)
-    })
-})
 
 app.get('/api/getmsg',(req,res)=>{
     db.query((err,result)=>{
@@ -35,7 +35,7 @@ app.get('/api/getmsg',(req,res)=>{
     })
 })
 
-const port =  6752;
+const PORT = process.env.PORT || 5533
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
