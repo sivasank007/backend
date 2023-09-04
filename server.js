@@ -23,8 +23,8 @@ app.get('/getexample',(req,res)=>{
     })
 })
 
-const port = process.env.PORT || 6752;
+const port = 6828;
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
-});
+})
