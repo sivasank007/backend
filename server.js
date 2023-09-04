@@ -38,6 +38,17 @@ app.get('/api/getmenu', (req, res) => {
   });
 });
 
+app.get('/api/getmenuitems', (req, res) => {
+  const sql = "SELECT * FROM menuitems";
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error("Database query error:", err.message);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+    return res.json(result);
+  });
+});
+
 app.get('/api/getmsg', (req, res) => {
   res.json("I'm alive")
 });
