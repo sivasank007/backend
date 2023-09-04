@@ -35,7 +35,7 @@ app.get('/api/getmsg',(req,res)=>{
     })
 })
 
-const port =  6752;
+const port = process.env.PORT || 6752;
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
