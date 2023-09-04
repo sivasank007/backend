@@ -19,7 +19,7 @@ const db = mysql.createConnection({
 app.get('/getexample',(req,res)=>{
     const sql = "select * from menu";
     db.query(sql,(err,result)=>{
-        return res.send(result)
+        return res.json(result)
     })
 })
 
