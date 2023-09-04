@@ -10,10 +10,10 @@ app.use(express.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-	host:process.env.DB_HOST,
-	user: process.env.DB_USER,
-	password: process.env.DB_PASS,
-	database: process.env.DB_NAME,
+	host: "containers-us-west-65.railway.app",
+	user: "root",
+	password: 'HEGnUbTZU0oZAYI35pBk',
+	database: "railway",
 });
 
 app.get('/getexample',(req,res)=>{
