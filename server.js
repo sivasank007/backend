@@ -46,7 +46,7 @@ app.get('/api/getmsg',(req,res)=>{
     })
 })
 
-const port = process.env.MYSQLPORT || 6752;
+const port = 6752;
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
