@@ -27,19 +27,8 @@ db.connect((err) => {
   }
 });
 
-app.get('/api/getmenu', (req, res) => {
-  const sql = "SELECT * FROM menu";
-  db.query(sql, (err, result) => {
-    if (err) {
-      console.error("Database query error:", err.message);
-      return res.status(500).json({ error: "Internal Server Error" });
-    }
-    return res.json(result);
-  });
-});
-
-app.get('/api/getmenuitems', (req, res) => {
-  const sql = "SELECT * FROM menuitems";
+app.get('/api/getusers', (req, res) => {
+  const sql = "SELECT * FROM users";
   db.query(sql, (err, result) => {
     if (err) {
       console.error("Database query error:", err.message);
@@ -53,7 +42,7 @@ app.get('/api/getmsg', (req, res) => {
   res.json("I'm alive")
 });
 
-const port = process.env.PORT || 6752; // Use the PORT environment variable if available
+const port = process.env.PORT || 3306; // Use the PORT environment variable if available
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
