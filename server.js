@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 
-const urlDB = `mysql://${process.env}:${process.env}@${process.env}:${process.env}/${process.env}`;
+const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
 
 const db = mysql.createConnection(urlDB);
 
