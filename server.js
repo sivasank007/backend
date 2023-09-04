@@ -10,10 +10,10 @@ app.use(express.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-	host: "containers-us-west-65.railway.app",
-	user: "root",
-	password: 'HEGnUbTZU0oZAYI35pBk',
-	database: "railway",
+	host: process.env.DB_HOST,
+	user: process.env.DB_USER,
+	password: process.env.DB_PASS,
+	database: process.env.DB_NAME,
 });
 
 app.get('/getexample',(req,res)=>{
@@ -23,7 +23,7 @@ app.get('/getexample',(req,res)=>{
     })
 })
 
-const port = 6828;
+const port = process.env.DB_PORT || 6828;
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
