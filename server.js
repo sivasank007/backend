@@ -25,7 +25,7 @@ app.get('/getexample',(req,res)=>{
     })
 })
 
-const port = process.env.DB_PORT || 6828;
+const port = process.env.DB_PORT || 6752;
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
