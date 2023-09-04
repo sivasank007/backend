@@ -9,16 +9,29 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(cors());
+app.use(cors());  
 
 const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
 
 const db = mysql.createConnection(urlDB);
 
-app.get('/getexample',(req,res)=>{
+app.get('/api/getmenu',(req,res)=>{
     const sql = "select * from menu";
     db.query(sql,(err,result)=>{
         return res.json(result)
+    })
+})
+
+app.get('/api/getmenuitems',(req,res)=>{
+    const sql = "select * from menuitems";
+    db.query(sql,(err,result)=>{
+        return res.json(result)
+    })
+})
+
+app.get('/api/getmsg',(req,res)=>{
+    db.query((err,result)=>{
+        return res.json("Hey I'm alive")
     })
 })
 
