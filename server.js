@@ -49,7 +49,7 @@ app.get('/api/getmenu', (req, res) => {
   });
 });
 
-app.get('getmenuitems', (req, res) => {
+app.get('/getmenuitems', (req, res) => {
   const sql = "SELECT * FROM menuitems";
   db.query(sql, (err, result) => {
     if (err) {
