@@ -42,7 +42,7 @@ app.get('/api/getmsg', (req, res) => {
   res.json("I'm alive")
 });
 
-const port = process.env.PORT || 3306; // Use the PORT environment variable if available
+const port = process.env.PORT || 6752; // Use the PORT environment variable if available
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
